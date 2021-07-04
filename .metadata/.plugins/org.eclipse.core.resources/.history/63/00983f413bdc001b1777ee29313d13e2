@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<jsp:useBean id="obj" class="beans.UsuarioBean"></jsp:useBean>
+<jsp:setProperty property="*" name="obj"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Bem Vindo</title>
+</head>
+<body>
+	Bem Vindo: <jsp:getProperty name="obj" property="nome" />
+</body>
+</html>

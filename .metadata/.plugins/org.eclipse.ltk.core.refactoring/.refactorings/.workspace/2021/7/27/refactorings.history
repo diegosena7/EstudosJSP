@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;testes&apos;" deleteContents="true" description="Delete resource &apos;testes&apos;" element1="/testes" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1625178001518"/>&#x0A;<refactoring comment="Rename resource &apos;testes&apos; to &apos;UsandoTagForward_JSP&apos;" description="Rename resource &apos;testes&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/testes" name="UsandoTagForward_JSP" stamp="1625241195426" updateReferences="true"/>
+</session>

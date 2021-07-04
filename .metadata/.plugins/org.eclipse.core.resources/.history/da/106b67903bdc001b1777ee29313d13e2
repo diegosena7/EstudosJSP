@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
+<jsp:useBean id="user" class="beans.UsuarioBean"></jsp:useBean>
+<jsp:setProperty property="*" name="user"/>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Usando setProperty e getProperty</title>
+</head>
+<body>
+	Dados do usuário: <br>
+	Nome: <jsp:getProperty property="nome" name="user"/><br>
+	Senha: <jsp:getProperty property="senha" name="user"/><br>
+	E-mail: <jsp:getProperty property="email" name="user"/><br>
+	<a href="usuarioNew.jsp">Novo Usuário</a>
+</body>
+</html>
+
+<!-- Tags de ação jsp: setProperty e jsp: getProperty -->
+<!-- Essa classe instancia um objeto do tipo UsuarioBean chamado user, seta todos os valores provenientes do
+formulário d classe index.jsp através do atributo setProperty e property="*" e obtem os valores através do
+atributo getProperty
+
+A tag de ação jsp: setProperty define um valor ou valores de propriedade em um atributo do tipo bean usando o método setter.
+A tag de ação jsp: getProperty retorna o valor do atributo do tipo bean usando o método getter.
+ -->

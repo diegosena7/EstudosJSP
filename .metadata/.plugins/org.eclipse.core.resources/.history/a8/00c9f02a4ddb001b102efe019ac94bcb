@@ -1,0 +1,11 @@
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>JSP - Tags de Ação</title>
+</head>
+<body>
+<% out.print("Hoje é: "+java.util.Calendar.getInstance().getTime()); %>
+<br/>
+O parâmetro é: <%=request.getParameter("name") %>
+</body>
+</html>

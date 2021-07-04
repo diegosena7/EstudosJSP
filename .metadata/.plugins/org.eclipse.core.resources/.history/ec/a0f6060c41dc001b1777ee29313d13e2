@@ -1,0 +1,153 @@
+package net.javaguides.usermanagement.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.javaguides.usermanagement.model.User;
+
+/**
+ * Esta classe DAO fornece operações de banco de dados CRUD para os usuários da tabela no banco de dados
+ * @author Diego Sena
+ *
+ */
+public class UserDAO {
+	private String jdbcURLDeConexao = "jdbc:mysql://127.0.0.1:3306/demo?useSSL=false";
+	private String jdbcNomeDeUsuario = "root";
+	private String jdbcSenha = "Santosfc@1912";
+
+	private static final String INSERIR_USUARIO = "INSERT INTO users" + "  (name, email, country) VALUES " + " (?, ?, ?);";
+
+	private static final String BUSCAR_USUARIO_POR_ID = "select id, name , email , country from users where id = ?";
+	private static final String BUSCAR_TODOS_USUARIOS = "select * from users";
+	private static final String DELETAR_USUARIO = "delete from users where id = ?;";
+	private static final String ATUALIZAR_USUARIO = "update users set name = ?, email= ?, country = ? where id = ?;";
+
+	public UserDAO() {
+	}
+
+	protected Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection(jdbcURLDeConexao, jdbcNomeDeUsuario, jdbcSenha);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return connection;
+	}
+
+	public void inserirUsuario(User user) throws SQLException {
+		System.out.println(INSERIR_USUARIO);
+		// try-with-resource statement will auto close the connection.
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(INSERIR_USUARIO)) {
+			preparedStatement.setString(1, user.getNome());
+			preparedStatement.setString(2, user.getEmail());
+			preparedStatement.setString(3, user.getPais());
+			System.out.println(preparedStatement);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+	}
+
+	public User buscarUsuario(int id) {
+		User user = null;
+		// Step 1: Establishing a Connection
+		try (Connection connection = getConnection();
+				// Step 2:Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(BUSCAR_USUARIO_POR_ID);) {
+			preparedStatement.setInt(1, id);
+			System.out.println(preparedStatement);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				String country = rs.getString("country");
+				user = new User(id, name, email, country);
+			}
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return user;
+	}
+
+	public List<User> selectAllUsers() {
+
+		// using try-with-resources to avoid closing resources (boiler plate code)
+		List<User> users = new ArrayList<>();
+		// Step 1: Establishing a Connection
+		try (Connection connection = getConnection();
+
+				// Step 2:Create a statement using connection object
+			PreparedStatement preparedStatement = connection.prepareStatement(BUSCAR_TODOS_USUARIOS);) {
+			System.out.println(preparedStatement);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				String country = rs.getString("country");
+				users.add(new User(id, name, email, country));
+			}
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return users;
+	}
+
+	public boolean deletarUsuario(int id) throws SQLException {
+		boolean deletarLinha;
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement(DELETAR_USUARIO);) {
+			statement.setInt(1, id);
+			deletarLinha = statement.executeUpdate() > 0;
+		}
+		return deletarLinha;
+	}
+
+	public boolean atualizarUsuario(User user) throws SQLException {
+		boolean atualizarLinha;
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement(ATUALIZAR_USUARIO);) {
+			statement.setString(1, user.getNome());
+			statement.setString(2, user.getEmail());
+			statement.setString(3, user.getPais());
+			statement.setInt(4, user.getId());
+
+			atualizarLinha = statement.executeUpdate() > 0;
+		}
+		return atualizarLinha;
+	}
+
+	private void printSQLException(SQLException ex) {
+		for (Throwable e : ex) {
+			if (e instanceof SQLException) {
+				e.printStackTrace(System.err);
+				System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+				System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+				System.err.println("Message: " + e.getMessage());
+				Throwable t = ex.getCause();
+				while (t != null) {
+					System.out.println("Cause: " + t);
+					t = t.getCause();
+				}
+			}
+		}
+	}
+}

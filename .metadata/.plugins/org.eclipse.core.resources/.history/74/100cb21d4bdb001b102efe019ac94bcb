@@ -1,0 +1,14 @@
+<%@ page isErrorPage="true" %>
+
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>JSP - Exception</title>
+</head>
+<body>
+
+<h3>Desculpe, ocorreu uma exceção!</h3>
+
+Exception is: <%= exception %>
+</body>
+</html>

@@ -1,0 +1,15 @@
+package dao;
+
+public class CriaConexaoDAO {
+
+	/** The jdbc URL de conexao. */
+	private String jdbcURLDeConexao = "jdbc:mysql://127.0.0.1:3306/crudUsuarios?useSSL=false";
+	
+	/** The jdbc nome de usuario. */
+	private String jdbcNomeDeUsuario = "root";
+	
+	/** The jdbc senha. */
+	private String jdbcSenha = "Santosfc@1912";
+	
+	
+}

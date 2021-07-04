@@ -1,0 +1,10 @@
+<html>
+<body>
+<h2>Index JSP</h2>
+
+<jsp:include page="printdate.jsp" />
+
+<h2>Final da Index JSP</h2>
+
+</body>
+</html>

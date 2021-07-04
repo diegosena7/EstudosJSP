@@ -1,0 +1,7 @@
+<html>
+<body>
+<% out.print("Hoje é: " + java.util.Calendar.getInstance().getTime()); %>
+
+Parâmetro: <%=request.getParameter("name") %>
+</body>
+</html>

@@ -1,0 +1,35 @@
+package bean;
+
+import java.io.Serializable;
+
+/*
+ * Um JavaBean é uma classe Java que deve seguir as seguintes convenções:
+ * Ele deve ter um construtor sem arg.
+ * Deve ser serializável.
+ * Ele deve fornecer métodos para definir e obter os valores das propriedades, conhecidos como métodos getter e setter.
+ */
+public class Funcionario implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	private int id;  
+	private String nome;  
+	
+	public Funcionario() {
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+}

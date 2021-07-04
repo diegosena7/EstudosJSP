@@ -1,0 +1,16 @@
+package util;
+
+/**
+ * The Class Calculator.
+ */
+public class Calculator {
+
+	/**
+	 * Função que recebe um número x como parãmetro e retorna esse número ao cubo
+	 * @param numero
+	 * @return the int
+	 */
+	public int calculaValorDoCubo(int numero) {
+		return numero * numero * numero;
+	}
+}
