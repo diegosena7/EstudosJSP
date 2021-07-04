@@ -38,6 +38,10 @@ public class UsuarioServlet extends HttpServlet {
 
 	/**
 	 * Do post.
+	 * Método responsável pelas alterações solicitadas pelo usuário da nossa aplicação.
+	 * Encaminha as requisições do tipo post para o método doGet, pois este, trata as
+	 * solicitações e encaminha de acordo com as requisições aos métodos responsáveis
+	 * pelas devidas ações solicitadas pelo usuário.
 	 * @param request the request
 	 * @param response the response
 	 * @throws ServletException the servlet exception
@@ -49,6 +53,7 @@ public class UsuarioServlet extends HttpServlet {
 
 	/**
 	 * Do get.
+	 * Método responsável por direcionar as requições do usuário aos métodos responsáveis pelo CRUD
 	 * @param request the request
 	 * @param response the response
 	 * @throws ServletException the servlet exception
@@ -123,7 +128,6 @@ public class UsuarioServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
 		request.setAttribute("usuario", usuarioExistente);
 		dispatcher.forward(request, response);
-
 	}
 
 	/**

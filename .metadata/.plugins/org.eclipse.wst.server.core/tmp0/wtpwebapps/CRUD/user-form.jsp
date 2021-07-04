@@ -11,9 +11,9 @@
 <body>
 
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
+		<nav class="navbar navbar-expand-md navbar-dark" style="background-color: blue">
 			<div>
-				<a href="https://www.javaguides.net" class="navbar-brand"> Gerenciamento de Usuários </a>
+				<a href="https://diegossena.com.br/" class="navbar-brand"> Gerenciamento de Usuários </a>
 			</div>
 
 			<ul class="navbar-nav">
@@ -25,44 +25,32 @@
 	<div class="container col-md-5">
 		<div class="card">
 			<div class="card-body">
-				<c:if test="${usuario != null}">
-					<form action="update" method="post">
-				</c:if>
-				<c:if test="${usuario == null}">
-					<form action="insert" method="post">
-				</c:if>
-
+				<c:if test="${usuario != null}"> <form action="update" method="post"> </c:if>
+				<c:if test="${usuario == null}"> <form action="insert" method="post"> </c:if>
 				<caption>
 					<h2>
-						<c:if test="${usuario != null}">
-            			Editar Usuário
-            		</c:if>
-						<c:if test="${usuario == null}">
-            			Novo Usuário
-            		</c:if>
+						<c:if test="${usuario != null}"> Editar Usuário </c:if>
+						<c:if test="${usuario == null}"> Novo Usuário </c:if>
 					</h2>
 				</caption>
 
 				<c:if test="${usuario != null}">
-					<input type="hidden" name="id" value="<c:out value='${usuario.id}' />" />
+					<input type="hidden" name="id" value="<c:out value='${usuario.id}'/>" />
 				</c:if>
 
 				<fieldset class="form-group">
-					<label>Nome do Usuário: </label> <input type="text"
-						value="<c:out value='${usuario.nome}' />" class="form-control"
-						name="nome" required="required">
+					<label>Nome do Usuário:</label> <input type="text"	value="<c:out value='${usuario.nome}'/>"
+					class="form-control" name="nome" required="required">
 				</fieldset>
 
 				<fieldset class="form-group">
-					<label>E-mail do Usuário: </label> <input type="text"
-						value="<c:out value='${usuario.email}' />" class="form-control"
-						name="email">
+					<label>E-mail do Usuário: </label> <input type="text" value="<c:out value='${usuario.email}'/>"
+					class="form-control" name="email">
 				</fieldset>
 
 				<fieldset class="form-group">
-					<label>País do Usuário: </label> <input type="text"
-						value="<c:out value='${usuario.pais}' />" class="form-control"
-						name="pais">
+					<label>País do Usuário: </label> <input type="text" value="<c:out value='${usuario.pais}'/>"
+					class="form-control" name="pais">
 				</fieldset>
 
 				<button type="submit" class="btn btn-success">Salvar</button>

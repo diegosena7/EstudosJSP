@@ -1,0 +1,6 @@
+Ao iniciar a aplicação nossa servlet chama a página de lista de usuários (user-list.jsp).
+
+Dentro da página de lista de usuários (user-list.jsp) temos as opções de adicionar novo usuário, editar e excluir usuário.
+
+Ao selecionarmos a opção Adicionar Usuário, nossa página user-list.jsp encaminha a requisição para o servlet que recebe a
+ação do tipo /new e esta ação redireciona a requisição para a classe user-form.jsp e exibe o formulário para inserção.

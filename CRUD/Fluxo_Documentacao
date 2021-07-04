@@ -1,0 +1,31 @@
+Ao iniciar a aplicação nossa servlet chama a página de lista de usuários (user-list.jsp).
+
+Dentro da página de lista de usuários (user-list.jsp) temos as opções de adicionar novo usuário, editar e excluir usuário.
+
+Ao selecionarmos a opção Adicionar Usuário, nossa página user-list.jsp encaminha a requisição para o servlet que recebe a
+ação do tipo /new e esta ação redireciona a requisição para a classe user-form.jsp e exibe o formulário para inserção.
+
+Ao selecionarmos a opção Editar, nossa página user-list.jsp encaminha a requisição para o servlet que recebe a
+ação do tipo edit?id= através da tag href, esta ação pega como parâmetro o id do usuário e mostra na tela os
+dados do usuário de acordo com o id selecionado, após as alterações o objeto alterado é inserido no BD.
+
+Ao selecionarmos a opção Excluir, nossa página user-list.jsp encaminha a requisição para o servlet que recebe a
+ação do tipo delete?id= através da tag href, esta ação pega como parâmetro o id do usuário e exclui da base de
+dados o objeto selecionado pelo id.
+
+										############## user-form.jsp ##############
+Nesta classe usamos jstl através da taglib.
+Esta classe recebe as requisições da servlet de acordo com as requisições feitas pelo usuário em nossa aplicação.
+1 - Foi criada uma validação, onde se o usuário (objeto) for != null, a ação do form será do tipo update, ou seja,
+neste cenário, já temos um objeto no BD, por este motivo a ação será de atualização do objeto.  E com isso a tela
+exibida ao usuário será de Editar Usuário e em nossa classe preenchemos os inputs com os atributos do objeto usuário.
+
+2 - Fizemos outra validação, onde se o usuário (objeto) for == null, a ação do form será do tipo insert, ou seja,
+neste cenário iremos inserir um novo objeto no BD. E com isso a tela exibida ao usuário será de Novo Usuário e em
+nossa classe os inputs estarão vazios para serem preenchidos com os atributos do objeto usuário.
+
+										############## user-list.jsp ##############
+Classe inicial da nossa aplicação, onde temos as opções de adicionar novo usuário, editar e excluir usuário.
+Temos nossa tabela com os dados do usuário, onde foi usado um c:forEach (atributo da taglib) para popular a listagem na tela.
+Usamos uma variável interna de controle (user), para percorrer nossa lista de usuarios (listaDeUsuarios) que é proveniente
+da nossa Servlet (UsuarioServlet.java) através do método listarUsuarios e exibimos todos os usuários na tela.
